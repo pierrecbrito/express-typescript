@@ -40,6 +40,13 @@ app.get('/api/product/:id/review/:reviewId', (req: Request, res: Response):any =
     return res.send(req.params);
 });
 
+const getUser = (req: Request, res: Response):any => {
+    return res.send(req.params);
+}
+
+app.get('/api/user/:id', getUser)
+
+
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
