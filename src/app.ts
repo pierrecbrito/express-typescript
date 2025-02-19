@@ -1,4 +1,4 @@
-import express, {Request, Response} from 'express';
+import express, {NextFunction, Request, Response} from 'express';
 
 const app = express();
 app.use(express.json());
@@ -45,6 +45,20 @@ const getUser = (req: Request, res: Response):any => {
 }
 
 app.get('/api/user/:id', getUser)
+
+const checkUser = (req: Request, res: Response, next: NextFunction):any => {
+    if(req.params.id === '1') {
+        next();
+    } else {
+        return res.status(401).json({
+            message: 'Access denied',
+        });
+    }
+}
+
+app.get('/api/user/:id/access', checkUser, (req: Request, res: Response):any => {
+    return res.json({"message": "Access granted"});
+});
 
 
 app.listen(3000, () => {
