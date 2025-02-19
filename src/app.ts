@@ -1,7 +1,13 @@
 import express, {NextFunction, Request, Response} from 'express';
 
+const showPath = (req: Request, res: Response, next: NextFunction):any => {
+    console.log('Request URL:', req.originalUrl);
+    next();
+}
+
 const app = express();
 app.use(express.json());
+app.use(showPath);
 
 app.get('/', (req, res) => {
     res.send('Hello World');
@@ -59,6 +65,8 @@ const checkUser = (req: Request, res: Response, next: NextFunction):any => {
 app.get('/api/user/:id/access', checkUser, (req: Request, res: Response):any => {
     return res.json({"message": "Access granted"});
 });
+
+
 
 
 app.listen(3000, () => {
