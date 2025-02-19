@@ -26,6 +26,12 @@ app.get('/api/interfaces', (req: Request, res: Response):any => {
     return res.send('Interfaces');
 });
 
+app.get('/api/json', (req: Request, res: Response):any => {
+    return res.status(200).json({
+        message: 'JSON response',
+    });
+});
+
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
