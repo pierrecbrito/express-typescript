@@ -67,6 +67,10 @@ app.get('/api/user/:id/access', checkUser, (req: Request, res: Response):any => 
 });
 
 
+app.get('/api/user/:id/details/:name', (req: Request<{id: string, name: string}>, res: Response<{status:boolean}>):any => {
+    console.log(req.params.id, req.params.name);
+    return res.json({status: true});
+});
 
 
 app.listen(3000, () => {
