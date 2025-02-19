@@ -11,11 +11,18 @@ app.get('/', (req, res) => {
 });
 
 app.post('/api/products', (req, res):any => {
-    console.log(req.body);
     res.status(201).json({
         message: 'Data received',
         data: req.body,
     });
+});
+
+app.all('/api/product/check', (req, res) => {
+    if(req.method === 'POST') {
+        res.send('You have made a POST request');
+    } else if(req.method === 'GET') {
+        res.send('You have made a GET request');
+    } 
 });
 
 app.listen(3000, () => {
