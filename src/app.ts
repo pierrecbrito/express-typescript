@@ -73,6 +73,16 @@ app.get('/api/user/:id/details/:name', (req: Request<{id: string, name: string}>
 });
 
 
+app.get('/api/error', (req: Request, res: Response):any => {
+    try {
+        throw new Error('Custom error');
+    } catch (error: any) {
+        return res.status(500).json({
+            message: error.message,
+        });
+    }
+});
+
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
